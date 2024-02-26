@@ -11,7 +11,7 @@ case class confirmCheckout(
       shippingProvider: ShippingProvider)
 {
   def execute(customerId:Int, customerEmailAddress:String, shippingAddress: Address, creditCardInfo: CreditCardInfo, productQuantities: Array[(Int, Int)]): Unit = {
-    val order = Order(customerId, productQuantities, shippingAddress)
+    val order = Order(customerId, productQuantities, shippingAddress.id)
 
     val totalPrice: Double = getTotalPrice(productQuantities)
     orderRepository.create(order)
